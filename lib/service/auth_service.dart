@@ -1,3 +1,3 @@
-class  AuthService {
-  
+abstract class AuthService {
+  login();
 }

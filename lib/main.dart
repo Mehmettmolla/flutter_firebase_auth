@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_firebase_auth/service/apple_auth.dart';
+import 'package:flutter_firebase_auth/service/facebook_auth.dart';
+import 'package:flutter_firebase_auth/service/google_auth.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,11 +12,30 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Material App Bar'),
+          title: Text('LOGİN'),
         ),
         body: Center(
-          child: Container(
-            child: Text('Hello World'),
+          child: Column(
+            children: [
+              ElevatedButton(child: Text("google"),
+              onPressed: (){
+                GoogleAuth().login();
+               setState(){};
+              }
+              ),
+              ElevatedButton(child: Text("facebook"),
+              onPressed: (){
+               FacebookAuth().login();
+               setState(){};
+              }
+              ),
+              ElevatedButton(child: Text("apple"),
+              onPressed: (){
+                AppleAuth().login();
+               setState(){};
+              }
+              ),
+            ],
           ),
         ),
       ),
