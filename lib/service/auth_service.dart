@@ -1,4 +1,4 @@
 abstract class AuthService {
-  login();
+  signIn();
   signOut();
 }

@@ -44,44 +44,45 @@ class MyApp extends StatelessWidget {
                           ElevatedButton(
                               child: Text("email and password singIn"),
                               onPressed: () async {
-                                await EmailPasswordAuth().signIn(
+                                await EmailPasswordAuth().signInWithEmailPassword (
                                     _emailController.text,
                                     _passwordController.text);
                               }),
                           ElevatedButton(
                               child: Text("email and password signUp"),
                               onPressed: () async {
-                                await EmailPasswordAuth().signUp(
+                                await EmailPasswordAuth().signUpWithEmailPassword(
                                     _emailController.text,
                                     _passwordController.text);
                               }),
                           ElevatedButton(
-                              child: Text("email and password signOut"),
-                              onPressed: () async {
-                                await EmailPasswordAuth().signOut();
-                              }),
+                        child: Text("email and password signOut"),
+                        onPressed: () async {
+                          await EmailPasswordAuth().signOutWithEmailPassword();
+                        }),
                         ],
                       ),
                     ),
+                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
                             child: Text("google"),
                             onPressed: () {
-                              GoogleAuth().login();
+                              GoogleAuth().signIn();
                             }),
                         ElevatedButton(
                             child: Text("facebook"),
                             onPressed: () {
-                              FacebookAuth().login();
+                              FacebookAuth().signIn();
                               setState() {}
                               ;
                             }),
                         ElevatedButton(
                             child: Text("apple"),
                             onPressed: () {
-                              AppleAuth().login();
+                              AppleAuth().signIn();
                               setState() {}
                               ;
                             }),

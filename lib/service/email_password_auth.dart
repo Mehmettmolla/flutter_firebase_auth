@@ -4,7 +4,7 @@ import 'package:flutter_firebase_auth/service/auth_service.dart';
 class EmailPasswordAuth {
  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future signIn(String email, String password) async {
+  Future signInWithEmailPassword(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       return null;
@@ -12,7 +12,7 @@ class EmailPasswordAuth {
       return e.message;
     }
   }
-  Future signUp(String email, String password) async {
+  Future signUpWithEmailPassword(String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -23,7 +23,7 @@ class EmailPasswordAuth {
       return e.message;
     }
   }
-  Future<void> signOut()async{
+  Future signOutWithEmailPassword()async{
   await FirebaseAuth.instance.signOut();
   }
 }
