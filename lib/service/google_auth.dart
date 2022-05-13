@@ -3,9 +3,9 @@ import 'auth_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleAuth implements AuthService {
-
   @override
   login() {
+  
   signInWithGoogle();
   }
 
