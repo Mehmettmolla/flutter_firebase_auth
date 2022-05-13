@@ -3,9 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_firebase_auth/service/apple_auth.dart';
 import 'package:flutter_firebase_auth/service/facebook_auth.dart';
 import 'package:flutter_firebase_auth/service/google_auth.dart';
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(); 
+  runApp(MyApp());
+}
+class MyApp extends StatelessWidget {  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +23,6 @@ class MyApp extends StatelessWidget {
               ElevatedButton(child: Text("google"),
               onPressed: (){
                 GoogleAuth().login();
-               setState(){};
               }
               ),
               ElevatedButton(child: Text("facebook"),
