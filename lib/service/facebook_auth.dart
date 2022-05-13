@@ -4,5 +4,11 @@ class FacebookAuth implements AuthService{
   @override
   login() {
   }
+
+  @override
+  signOut() {
+    // TODO: implement signOut
+    throw UnimplementedError();
+  }
   
 }

@@ -20,4 +20,13 @@ class GoogleAuth implements AuthService {
   );
   return await FirebaseAuth.instance.signInWithCredential(credential);
 }
+
+ @override
+  signOut() {
+    signOutWithGoogle();
+  }
+
+  Future<void> signOutWithGoogle() async {
+  await FirebaseAuth.instance.signOut();
+}
 }
