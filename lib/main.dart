@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_firebase_auth/service/apple_auth.dart';
-import 'package:flutter_firebase_auth/service/email_password_auth.dart';
-import 'package:flutter_firebase_auth/service/facebook_auth.dart';
-import 'package:flutter_firebase_auth/service/google_auth.dart';
+import 'package:flutter_firebase_auth/services/auth/auth_service.dart';
+import 'package:flutter_firebase_auth/services/auth/oauth/apple_oauth_service.dart';
+import 'package:flutter_firebase_auth/services/auth/oauth/facebook_oauth_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
+
+  final authService = AuthService(
+    googleOAuthService: GoogleOAuthService(),
+    facebookOAuthService: FacebookOAuthService(),
+  );
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,69 +52,36 @@ class MyApp extends StatelessWidget {
                           ElevatedButton(
                               child: Text("email and password singIn"),
                               onPressed: () async {
-                                await EmailPasswordAuth().signInWithEmailPassword (
+                                await authService.signInWithEmailPassword(
                                     _emailController.text,
                                     _passwordController.text);
                               }),
                           ElevatedButton(
                               child: Text("email and password signUp"),
                               onPressed: () async {
-                                await EmailPasswordAuth().signUpWithEmailPassword(
+                                await authService.signUpWithEmailPassword(
                                     _emailController.text,
                                     _passwordController.text);
                               }),
-                          ElevatedButton(
-                        child: Text("email and password signOut"),
-                        onPressed: () async {
-                          await EmailPasswordAuth().signOutWithEmailPassword();
-                        }),
                         ],
                       ),
                     ),
-                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
                             child: Text("google"),
                             onPressed: () {
-                              GoogleAuth().signIn();
+                              authService.signInWithGoogle();
                             }),
                         ElevatedButton(
                             child: Text("facebook"),
                             onPressed: () {
-                              FacebookAuth().signIn();
-                              setState() {}
-                              ;
+                              authService.signInWithFacebook();
                             }),
                         ElevatedButton(
                             child: Text("apple"),
                             onPressed: () {
-                              AppleAuth().signIn();
-                              setState() {}
-                              ;
-                            }),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                            child: Text("googleOut"),
-                            onPressed: () {
-                              GoogleAuth().signOut();
-                            }),
-                        ElevatedButton(
-                            child: Text("facebookOut"),
-                            onPressed: () {
-                              FacebookAuth().signOut();
-                              setState() {}
-                              ;
-                            }),
-                        ElevatedButton(
-                            child: Text("appleOut"),
-                            onPressed: () {
-                              AppleAuth().signOut();
                               setState() {}
                               ;
                             }),
