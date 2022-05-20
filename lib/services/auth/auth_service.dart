@@ -1,13 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'oauth/facebook_oauth_service.dart';
 import 'oauth/google_oauth_service.dart';
+import 'oauth/apple/apple_oauth_service.dart';
 
 class AuthService {
   final GoogleOAuthService googleOAuthService;
   final FacebookOAuthService facebookOAuthService;
+  final AppleOAuthService appleOAuthService;
 
-  AuthService(
-      {required this.googleOAuthService, required this.facebookOAuthService});
+  AuthService({
+    required this.googleOAuthService,
+    required this.facebookOAuthService,
+    required this.appleOAuthService,
+  });
 
   final _auth = FirebaseAuth.instance;
 
@@ -33,8 +38,15 @@ class AuthService {
     return FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  Future signInWithApple() async {
-    return;
+  Future<UserCredential> signInWithApple() async {
+    final appleAuth = await appleOAuthService.signIn();
+
+    final oauthCredential = OAuthProvider("apple.com").credential(
+      idToken: appleAuth.appleCredential.identityToken,
+      rawNonce: appleAuth.rawNonce,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
   }
 
   Future signInWithEmailPassword(String email, String password) async {
@@ -64,6 +76,6 @@ class AuthService {
 }
 
 final authService = AuthService(
-  googleOAuthService: GoogleOAuthService(),
-  facebookOAuthService: FacebookOAuthService(),
-);
+    googleOAuthService: GoogleOAuthService(),
+    facebookOAuthService: FacebookOAuthService(),
+    appleOAuthService: AppleOAuthService());

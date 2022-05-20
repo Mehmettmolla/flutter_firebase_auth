@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/services/auth/auth_service.dart';
-import 'package:flutter_firebase_auth/services/auth/oauth/apple_oauth_service.dart';
+import 'package:flutter_firebase_auth/services/auth/oauth/apple/apple_oauth_service.dart';
 import 'package:flutter_firebase_auth/services/auth/oauth/facebook_oauth_service.dart';
 import 'package:flutter_firebase_auth/services/auth/oauth/google_oauth_service.dart';
 
@@ -8,6 +8,7 @@ class HomeViewModel extends StatelessWidget {
   final authService = AuthService(
     googleOAuthService: GoogleOAuthService(),
     facebookOAuthService: FacebookOAuthService(),
+    appleOAuthService: AppleOAuthService()
   );
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -122,7 +123,7 @@ class OAuthButtons extends StatelessWidget {
         ElevatedButton(
             child: Text("apple"),
             onPressed: () {
-              AppleSignIn().signInWithApple();
+              authService.signInWithApple();
             }),
       ],
     );
