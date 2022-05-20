@@ -2,24 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb2444827145654735</string>
-				<string>com.googleusercontent.apps.562021099243-3s9qdum58kq6oqig02tfv7fdf3af427u</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookAppID</key>
-	<string>2444827145654735</string>
-	<key>FacebookClientToken</key>
-	<string>56526467eb8342a4dacf949eb69509c8</string>
-	<key>FacebookDisplayName</key>
-	<string>flutter-app</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -38,8 +22,26 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb2444827145654735</string>
+				<string>com.googleusercontent.apps.562021099243-3s9qdum58kq6oqig02tfv7fdf3af427u</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FacebookAppID</key>
+	<string>2444827145654735</string>
+	<key>FacebookClientToken</key>
+	<string>56526467eb8342a4dacf949eb69509c8</string>
+	<key>FacebookDisplayName</key>
+	<string>flutter-app</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -61,7 +63,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
 </dict>
 </plist>

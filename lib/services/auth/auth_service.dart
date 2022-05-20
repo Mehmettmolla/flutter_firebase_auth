@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'oauth/apple_oauth_service.dart';
 import 'oauth/facebook_oauth_service.dart';
+import 'oauth/google_oauth_service.dart';
 
 class AuthService {
   final GoogleOAuthService googleOAuthService;
@@ -22,17 +22,13 @@ class AuthService {
       idToken: googleAuth?.idToken,
     );
     return await FirebaseAuth.instance.signInWithCredential(credential);
-
-    // = Hata yonetimi
-    // - Home Sayfaisna yonelndirme,
-    // - manuel platform
   }
 
   Future<UserCredential> signInWithFacebook() async {
     final facebookAuth = await facebookOAuthService.signIn();
 
     final credential =
-        FacebookAuthProvider.credential(facebookAuth.accessToken.token);
+        FacebookAuthProvider.credential(facebookAuth.accessToken!.token);
 
     return FirebaseAuth.instance.signInWithCredential(credential);
   }
@@ -61,11 +57,11 @@ class AuthService {
       return e.message;
     }
   }
-}
 
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
   }
+}
 
 final authService = AuthService(
   googleOAuthService: GoogleOAuthService(),
